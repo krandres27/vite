@@ -17,8 +17,9 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "paths": {
+      "@api/*": ["src/api/*"],
       "@components/*": ["src/components/*"],
-      "@hooks/*": ["src/hooks/*"]
+      "@hooks/*": ["src/hooks/*"],
     }
   },
   "include": ["./src"],

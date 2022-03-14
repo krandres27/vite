@@ -13,6 +13,7 @@ module.exports = {
     'no-fallthrough': 0,
     'eol-last': ['error', 'always'],
     'jsx-quotes': ['error', 'prefer-double'],
+    'import/prefer-default-export': 'off',
   },
   settings: {
     'import/resolver': {
