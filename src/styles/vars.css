@@ -1,0 +1,8 @@
+:root {
+  --header: rgb(57, 62, 82);
+  --light-font-color: white;
+  --normal-font-color: black;
+  --overdue-todo: rgb(247, 206, 206);
+  --pending-todo: rgb(243, 243, 243);
+  --completed-todo: rgb(214, 253, 208);
+}

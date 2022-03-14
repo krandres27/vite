@@ -4,6 +4,7 @@ import { getTodos, updateTodo } from '@api/fetch'
 import useTodoReducer from '@hooks/useTodoReducer'
 import TodoItem from '@components/TodoItem'
 import { Todo } from 'src/types'
+import classes from './TodoList.module.css'
 
 function TodoList(): JSX.Element {
   const { state, dispatch } = useTodoReducer()
@@ -40,7 +41,7 @@ function TodoList(): JSX.Element {
   }
 
   return (
-    <section className="todo-list">
+    <section className={classes.todolist}>
       {getTodoItems(todos.filter((item) => !item.isComplete))}
       {getTodoItems(todos.filter((item) => item.isComplete))}
     </section>

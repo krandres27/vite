@@ -1,0 +1,19 @@
+@import '../../styles/vars.css';
+
+.todolist {
+  align-items: center;
+  color: var(--normal-font-color);
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 1.1rem;
+  justify-content: center;
+  margin: auto;
+  max-width: 600px;
+  width: 50%;
+}
+
+@media screen and (max-width: 768px) {
+  .todolist {
+    width: 90%;
+  }
+}
