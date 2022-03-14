@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react'
 import { render, screen } from '@testing-library/react'
-import App from './App'
+import App from '.'
 
 describe('SomeComponent', () => {
   it('shows greeting with the specified name', () => {

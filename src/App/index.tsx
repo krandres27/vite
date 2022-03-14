@@ -1,11 +1,11 @@
 import React from 'react'
-import SiteName from '@components/SiteName/SiteName'
+import TodoList from '@components/TodoList'
 import './App.css'
 
-function App() {
+function App(): JSX.Element {
   return (
     <div className="App">
-      <SiteName name="TODO app" />
+      <TodoList />
     </div>
   )
 }
