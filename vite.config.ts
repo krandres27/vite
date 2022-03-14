@@ -25,6 +25,7 @@ export default defineConfig((configEnv) => {
       alias: {
         '@api': resolve(__dirname, 'src', 'api'),
         '@components': resolve(__dirname, 'src', 'components'),
+        '@helpers': resolve(__dirname, 'src', 'helpers'),
         '@hooks': resolve(__dirname, 'src', 'hooks'),
       },
     },

@@ -3,7 +3,7 @@ import { FaSpinner } from 'react-icons/fa'
 import { getTodos, updateTodo } from '@api/fetch'
 import useTodoReducer from '@hooks/useTodoReducer'
 import TodoItem from '@components/TodoItem'
-import { Todo } from '../../types'
+import { Todo } from 'src/types'
 
 function TodoList(): JSX.Element {
   const { state, dispatch } = useTodoReducer()
@@ -29,19 +29,20 @@ function TodoList(): JSX.Element {
     [dispatch]
   )
 
+  const getTodoItems = (todoItems: Todo[]): JSX.Element[] => {
+    return todoItems.map((item) => (
+      <TodoItem todo={item} handleTodoUpdate={handleTodoUpdate} key={item.id} />
+    ))
+  }
+
   if (loadingTodos) {
     return <FaSpinner className="spin" />
   }
 
   return (
     <section className="todo-list">
-      {todos.map((item) => (
-        <TodoItem
-          todo={item}
-          handleTodoUpdate={handleTodoUpdate}
-          key={item.id}
-        />
-      ))}
+      {getTodoItems(todos.filter((item) => !item.isComplete))}
+      {getTodoItems(todos.filter((item) => item.isComplete))}
     </section>
   )
 }

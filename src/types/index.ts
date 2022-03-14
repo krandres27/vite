@@ -7,7 +7,8 @@ export type ActionTypes =
 export interface Todo {
   id: number
   description: string
+  dueDate: Date | null
   isComplete: boolean
-  dueDate?: Date | string
   isLoading: boolean
+  overdue: boolean
 }

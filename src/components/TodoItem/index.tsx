@@ -1,6 +1,7 @@
 import React from 'react'
 import { FaSpinner } from 'react-icons/fa'
 import { Todo } from 'src/types'
+import { formatDate } from '@helpers/formatDate'
 
 interface TodoItemProps {
   todo: Todo
@@ -18,16 +19,18 @@ function TodoItem({ todo, handleTodoUpdate }: TodoItemProps): JSX.Element {
         ) : (
           <input
             type="checkbox"
-            defaultChecked={isComplete}
             checked={isComplete}
             onChange={() => handleTodoUpdate(id)}
+            disabled={isComplete}
           />
         )}
         <span>{description}</span>
       </div>
-      <div>
-        <span>{dueDate}</span>
-      </div>
+      {dueDate && (
+        <div>
+          <span>{formatDate(dueDate)}</span>
+        </div>
+      )}
     </div>
   )
 }

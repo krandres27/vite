@@ -1,3 +1,4 @@
+import sortByDueDate from '@helpers/sortByDuteDate'
 import React from 'react'
 import { ActionTypes, Todo } from 'src/types'
 
@@ -43,9 +44,10 @@ function reducer(state: State, action: ActionTypes): State {
           ? { ...todo, isComplete: true, isLoading: false }
           : todo
       )
+
       return {
         ...state,
-        todos,
+        todos: sortByDueDate(todos),
       }
     }
 
