@@ -10,6 +10,14 @@ export const getTodos = async () => {
   }
 }
 
-export const updateTodo = () => {
-  return []
+export const updateTodo = async (id: string) => {
+  try {
+    const res = await (
+      await fetch(`${uri}/updateTodo?id=${id}`, { method: 'GET' })
+    ).json()
+    return res
+  } catch (err) {
+    console.log(err)
+    return undefined
+  }
 }

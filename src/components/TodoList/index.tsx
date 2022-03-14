@@ -1,28 +1,49 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import { FaSpinner } from 'react-icons/fa'
-import { getTodos } from '@api/fetch'
+import { getTodos, updateTodo } from '@api/fetch'
 import useTodoReducer from '@hooks/useTodoReducer'
+import TodoItem from '@components/TodoItem'
 import { Todo } from '../../types'
 
 function TodoList(): JSX.Element {
   const { state, dispatch } = useTodoReducer()
+  const { loadingTodos, todos } = state
 
   useEffect(() => {
-    dispatch({ type: 'GET_TODOS' })
+    dispatch({ type: 'GETTING_TODOS' })
 
     async function getData(): Promise<void> {
-      const todos: Todo[] = await getTodos()
-      dispatch({ type: 'SET_TODOS', payload: todos })
+      const fetchedTodos: Todo[] = await getTodos()
+      dispatch({ type: 'SET_TODOS', payload: fetchedTodos })
     }
 
     getData()
   }, [dispatch])
 
-  if (state.loadingTodos) {
+  const handleTodoUpdate = useCallback(
+    async (todoId: number): Promise<void> => {
+      dispatch({ type: 'UPDATING_TODO', payload: todoId })
+      await updateTodo(`${todoId}`)
+      dispatch({ type: 'UPDATED_TODO', payload: todoId })
+    },
+    [dispatch]
+  )
+
+  if (loadingTodos) {
     return <FaSpinner className="spin" />
   }
 
-  return <section className="todo-list">{JSON.stringify(state.todos)}</section>
+  return (
+    <section className="todo-list">
+      {todos.map((item) => (
+        <TodoItem
+          todo={item}
+          handleTodoUpdate={handleTodoUpdate}
+          key={item.id}
+        />
+      ))}
+    </section>
+  )
 }
 
 export default TodoList

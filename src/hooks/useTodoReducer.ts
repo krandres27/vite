@@ -4,18 +4,16 @@ import { ActionTypes, Todo } from 'src/types'
 interface State {
   loadingTodos: boolean
   todos: Todo[]
-  updatingTodo: boolean
 }
 
 const initialState: State = {
   loadingTodos: false,
   todos: [],
-  updatingTodo: false,
 }
 
 function reducer(state: State, action: ActionTypes): State {
   switch (action.type) {
-    case 'GET_TODOS':
+    case 'GETTING_TODOS':
       return {
         ...state,
         loadingTodos: true,
@@ -28,19 +26,25 @@ function reducer(state: State, action: ActionTypes): State {
         todos: action.payload,
       }
 
-    case 'UPDATE_TODO':
+    case 'UPDATING_TODO': {
+      const todos = state.todos.map((todo: Todo) =>
+        todo.id === action.payload ? { ...todo, isLoading: true } : todo
+      )
+
       return {
         ...state,
-        updatingTodo: true,
+        todos,
       }
+    }
 
     case 'UPDATED_TODO': {
       const todos = state.todos.map((todo: Todo) =>
-        todo.id === action.payload ? { ...todo, isComplete: true } : todo
+        todo.id === action.payload
+          ? { ...todo, isComplete: true, isLoading: false }
+          : todo
       )
       return {
         ...state,
-        updatingTodo: false,
         todos,
       }
     }
