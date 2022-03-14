@@ -23,6 +23,7 @@ export default defineConfig((configEnv) => {
     ],
     resolve: {
       alias: {
+        '@api': resolve(__dirname, 'src', 'api'),
         '@components': resolve(__dirname, 'src', 'components'),
         '@hooks': resolve(__dirname, 'src', 'hooks'),
       },
