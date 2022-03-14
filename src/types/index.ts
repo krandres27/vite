@@ -9,6 +9,6 @@ export interface Todo {
   description: string
   dueDate: Date | null
   isComplete: boolean
-  isLoading: boolean
-  overdue: boolean
+  isLoading?: boolean
+  overdue?: boolean
 }
